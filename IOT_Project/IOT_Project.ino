@@ -1,11 +1,11 @@
-//defining each digital pin to motor controller
-#define IN1 6
-#define IN2 5
-#define IN3 4
-#define IN4 3
+    //defining each digital pin to motor controller
+#define IN1 3
+#define IN2 4
+#define IN3 5
+#define IN4 6
 
-#define ENA 7
-#define ENB 2
+#define ENA 2
+#define ENB 7
 
 #define Speed 180
 
@@ -72,20 +72,17 @@ void loop() {
       int value = switchCharacteristic.value();
       if (switchCharacteristic.written()) 
       {
-        if (value == 1) {
-          digitalWrite(ledPin, HIGH);         // will turn the builtin LED on
-        } 
-        else if(value == 2)
-        {
-          digitalWrite(ledPin, LOW);          // will turn the builtin LED off
+        Stop();
+        switch(value){
+          case '1':
+            forward();
+          case '2':
+            backward();
+          case '3':
+            left();
+          case '4':
+            right();
         }
-        else if(value == 3){                        
-          for (int i=0;i<3;i++){
-            digitalWrite(ledPin, HIGH);
-            delay(4000);
-            digitalWrite(ledPin, LOW);
-            }
-          }       
       }
     }
     // the central has disconnected
@@ -93,7 +90,7 @@ void loop() {
   }
 }
 
-void Forward() {
+void forward() {
   analogWrite(ENA, Speed);
   analogWrite(ENB, Speed);
   digitalWrite(IN1, HIGH);
@@ -101,7 +98,7 @@ void Forward() {
   digitalWrite(IN3, HIGH);
   digitalWrite(IN4, LOW);
 }
-void Backward() {
+void backward() {
   analogWrite(ENA, Speed);
   analogWrite(ENB, Speed);
   digitalWrite(IN1, LOW);
@@ -115,7 +112,7 @@ void Stop() {
   digitalWrite(IN3, LOW);
   digitalWrite(IN4, LOW);
 }
-void Left() {
+void left() {
   analogWrite(ENA, Speed);
   analogWrite(ENB, Speed);
   digitalWrite(IN1, HIGH);
@@ -123,7 +120,7 @@ void Left() {
   digitalWrite(IN3, LOW);
   digitalWrite(IN4, HIGH);
 }
-void Right() {
+void right() {
   analogWrite(ENA, Speed);
   analogWrite(ENB, Speed);
   digitalWrite(IN1, LOW);
