@@ -1,34 +1,21 @@
-  //#include "IOT_project/include/ThingspeakMine/ThingspeakMine.h"
 #include "Motor.h"
-
-
- 
-
-
 void setup() {
   Serial.begin(9600);
- 
- 
+
+
 
   DigitalWrite();
 
   AnalogWrite();
 
-  PinMode() ;
- 
+  PinMode();
 
- 
-  // BLE initialization
-  if (!BLE.begin()) { 
-    Serial.println("Starting Bluetooth® Low Energy module failed!");
-    while (1);
-  }
 
-    setMotorService();
-  // start advertising
-  BLE.advertise();
+  BLEInit();
+
+  setMotorService();
+  BLEAdvertise();
   Serial.println("BLE Peripheral");
-
 }
 
 void loop() {

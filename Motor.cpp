@@ -15,12 +15,12 @@
 
 //custom 128-bit UUID, read and writable by central
 BLEService MotorService("19b10000-e8f2-537e-4f6c-d104768a1214");
-//setting read and write characteristics 
+//setting read and write characteristics
 //BLEByteCharacteristic switchCharacteristic("19b10000-e8f2-537e-4f6c-d104768a1214", BLERead | BLEWrite);
 BLEIntCharacteristic switchCharacteristic("19b10000-e8f2-537e-4f6c-d104768a1214", BLERead | BLEWrite);
 
 
- 
+
 //custom 128-bit UUID, read and writable by central
 BLEService UltraSonicService("19b10000-e8f2-537e-4f6c-d104768a1215");
 
@@ -82,27 +82,25 @@ void setup() {
 
 
 void DigitalWrite() {
-    digitalWrite(IN1,LOW);
-  digitalWrite(IN2,LOW);
-  digitalWrite(IN3,LOW);
-  digitalWrite(IN4,LOW);
-
+  digitalWrite(IN1, LOW);
+  digitalWrite(IN2, LOW);
+  digitalWrite(IN3, LOW);
+  digitalWrite(IN4, LOW);
 }
 
 void AnalogWrite() {
-   analogWrite(ENA,Speed);
-  analogWrite(ENB,Speed);
-
+  analogWrite(ENA, Speed);
+  analogWrite(ENB, Speed);
 }
 
 void PinMode() {
-   // motor controls
-  pinMode(IN1,OUTPUT);
-  pinMode(IN2,OUTPUT);
-  pinMode(IN3,OUTPUT);
-  pinMode(IN4,OUTPUT);
-  pinMode(ENA,OUTPUT);
-  pinMode(ENB,OUTPUT);
+  // motor controls
+  pinMode(IN1, OUTPUT);
+  pinMode(IN2, OUTPUT);
+  pinMode(IN3, OUTPUT);
+  pinMode(IN4, OUTPUT);
+  pinMode(ENA, OUTPUT);
+  pinMode(ENB, OUTPUT);
 }
 
 
@@ -146,9 +144,8 @@ void Right() {
   digitalWrite(IN4, LOW);
 }
 
-void setMotorService()
-{
-   // set advertised local name and service UUID:
+void setMotorService() {
+  // set advertised local name and service UUID:
   BLE.setDeviceName("IOT_Project");
   BLE.setLocalName("IOT_Project");
   BLE.setAdvertisedService(MotorService);
@@ -161,11 +158,28 @@ void setMotorService()
 
   // set the initial value for the characeristic:
   switchCharacteristic.writeValue(0);
+}
 
+void BLEInit() {
+
+
+  // BLE initialization
+  if (!BLE.begin()) {
+    Serial.println("Starting Bluetooth® Low Energy module failed!");
+    while (1)
+      ;
+  }
+}
+
+
+void BLEAdvertise() {
+
+  // start advertising
+  BLE.advertise();
 }
 
 void Motor() {
-   // wait for a Bluetooth®️ Low Energy central
+  // wait for a Bluetooth®️ Low Energy central
   BLEDevice central = BLE.central();
   if (central) {
     Serial.print("Connected to central: ");
@@ -175,50 +189,54 @@ void Motor() {
     while (central.connected()) {
 
       Stop();
-      if (switchCharacteristic.written())
-      {
-      int value = switchCharacteristic.value();
-      //Serial.println(value);
-      if (value>0)
-      {
-        Serial.println(value);
-        switch (value){
-          case 49:{
-            Forward();
-            Serial.println("Forward");
-            delay(150);
-            break;
-          }
-          case 50:{
-            Backward();
-            Serial.println("Backward");
-            delay(150);
-            break;
-          }
-          case 51:{
-            Left();
-            Serial.println("Left");
-            delay(150);
-            break;
-          }
-          case 52:{
-            Right();
-            Serial.println("Right");
-            delay(150);
-            break;
-          }
-          case 53:{
-            Stop();
-            Serial.println("Stop");
-            break;
-          }
-          default:{
-            Stop();
-            Serial.println("Default Stop");
-            break;
+      if (switchCharacteristic.written()) {
+        int value = switchCharacteristic.value();
+        //Serial.println(value);
+        if (value > 0) {
+          Serial.println(value);
+          switch (value) {
+            case 49:
+              {
+                Forward();
+                Serial.println("Forward");
+                delay(150);
+                break;
+              }
+            case 50:
+              {
+                Backward();
+                Serial.println("Backward");
+                delay(150);
+                break;
+              }
+            case 51:
+              {
+                Left();
+                Serial.println("Left");
+                delay(150);
+                break;
+              }
+            case 52:
+              {
+                Right();
+                Serial.println("Right");
+                delay(150);
+                break;
+              }
+            case 53:
+              {
+                Stop();
+                Serial.println("Stop");
+                break;
+              }
+            default:
+              {
+                Stop();
+                Serial.println("Default Stop");
+                break;
+              }
           }
         }
-      }
       }
     }
     /*
