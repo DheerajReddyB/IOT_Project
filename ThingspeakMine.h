@@ -1,1 +1,2 @@
-void connectWIFI();
+void CheckWIFI();
+void ConnectToThingSpeak();

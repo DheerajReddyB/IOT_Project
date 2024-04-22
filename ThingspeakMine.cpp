@@ -6,7 +6,11 @@
 #define WIFI_SSID "sweethome-JioFiber-24_5G"
 #define WIFI_PASS "2success2"
 
-void connectWIFI()
+void ConnectToThingSpeak
+{
+
+}
+void CheckWIFI();
 {
    WiFi.begin(WIFI_SSID, WIFI_PASS);
   Serial.println("Connecting");
