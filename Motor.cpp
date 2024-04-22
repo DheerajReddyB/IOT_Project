@@ -1,3 +1,29 @@
+#include <ArduinoBLE.h>
+#include "BLEDevice.h"
+
+#define IN1 6
+#define IN2 5
+#define IN3 4
+#define IN4 3
+
+#define ENA 7
+#define ENB 2
+
+
+#define Speed 200
+
+
+//custom 128-bit UUID, read and writable by central
+BLEService MotorService("19b10000-e8f2-537e-4f6c-d104768a1214");
+//setting read and write characteristics 
+//BLEByteCharacteristic switchCharacteristic("19b10000-e8f2-537e-4f6c-d104768a1214", BLERead | BLEWrite);
+BLEIntCharacteristic switchCharacteristic("19b10000-e8f2-537e-4f6c-d104768a1214", BLERead | BLEWrite);
+
+
+ 
+//custom 128-bit UUID, read and writable by central
+BLEService UltraSonicService("19b10000-e8f2-537e-4f6c-d104768a1215");
+
 
 
 /*#include <ArduinoBLE.h>
@@ -54,6 +80,89 @@ void setup() {
   BLE.advertise();
   Serial.println("BLE Peripheral");*/
 
+
+void DigitalWrite() {
+    digitalWrite(IN1,LOW);
+  digitalWrite(IN2,LOW);
+  digitalWrite(IN3,LOW);
+  digitalWrite(IN4,LOW);
+
+}
+
+void AnalogWrite() {
+   analogWrite(ENA,Speed);
+  analogWrite(ENB,Speed);
+
+}
+
+void PinMode() {
+   // motor controls
+  pinMode(IN1,OUTPUT);
+  pinMode(IN2,OUTPUT);
+  pinMode(IN3,OUTPUT);
+  pinMode(IN4,OUTPUT);
+  pinMode(ENA,OUTPUT);
+  pinMode(ENB,OUTPUT);
+}
+
+
+
+void Backward() {
+  analogWrite(ENA, Speed);
+  analogWrite(ENB, Speed);
+  digitalWrite(IN1, HIGH);
+  digitalWrite(IN2, LOW);
+  digitalWrite(IN3, HIGH);
+  digitalWrite(IN4, LOW);
+}
+void Forward() {
+  analogWrite(ENA, Speed);
+  analogWrite(ENB, Speed);
+  digitalWrite(IN1, LOW);
+  digitalWrite(IN2, HIGH);
+  digitalWrite(IN3, LOW);
+  digitalWrite(IN4, HIGH);
+}
+void Stop() {
+  digitalWrite(IN1, LOW);
+  digitalWrite(IN2, LOW);
+  digitalWrite(IN3, LOW);
+  digitalWrite(IN4, LOW);
+}
+void Left() {
+  analogWrite(ENA, Speed);
+  analogWrite(ENB, Speed);
+  digitalWrite(IN1, HIGH);
+  digitalWrite(IN2, LOW);
+  digitalWrite(IN3, LOW);
+  digitalWrite(IN4, HIGH);
+}
+void Right() {
+  analogWrite(ENA, Speed);
+  analogWrite(ENB, Speed);
+  digitalWrite(IN1, LOW);
+  digitalWrite(IN2, HIGH);
+  digitalWrite(IN3, HIGH);
+  digitalWrite(IN4, LOW);
+}
+
+void setMotorService()
+{
+   // set advertised local name and service UUID:
+  BLE.setDeviceName("IOT_Project");
+  BLE.setLocalName("IOT_Project");
+  BLE.setAdvertisedService(MotorService);
+
+  // add the characteristic to the service
+  MotorService.addCharacteristic(switchCharacteristic);
+
+  // add service
+  BLE.addService(MotorService);
+
+  // set the initial value for the characeristic:
+  switchCharacteristic.writeValue(0);
+
+}
 
 void Motor() {
    // wait for a Bluetooth®️ Low Energy central
@@ -112,47 +221,9 @@ void Motor() {
       }
       }
     }
-/*
+    /*
     // the central has disconnected
-    Serial.println("Disconnected from central: ");*/
+    Serial.println("Disconnected from central: ");
+    */
   }
-}
-
-void Backward() {
-  analogWrite(ENA, Speed);
-  analogWrite(ENB, Speed);
-  digitalWrite(IN1, HIGH);
-  digitalWrite(IN2, LOW);
-  digitalWrite(IN3, HIGH);
-  digitalWrite(IN4, LOW);
-}
-void Forward() {
-  analogWrite(ENA, Speed);
-  analogWrite(ENB, Speed);
-  digitalWrite(IN1, LOW);
-  digitalWrite(IN2, HIGH);
-  digitalWrite(IN3, LOW);
-  digitalWrite(IN4, HIGH);
-}
-void Stop() {
-  digitalWrite(IN1, LOW);
-  digitalWrite(IN2, LOW);
-  digitalWrite(IN3, LOW);
-  digitalWrite(IN4, LOW);
-}
-void Left() {
-  analogWrite(ENA, Speed);
-  analogWrite(ENB, Speed);
-  digitalWrite(IN1, HIGH);
-  digitalWrite(IN2, LOW);
-  digitalWrite(IN3, LOW);
-  digitalWrite(IN4, HIGH);
-}
-void Right() {
-  analogWrite(ENA, Speed);
-  analogWrite(ENB, Speed);
-  digitalWrite(IN1, LOW);
-  digitalWrite(IN2, HIGH);
-  digitalWrite(IN3, HIGH);
-  digitalWrite(IN4, LOW);
 }
