@@ -1,19 +1,22 @@
 #include "Motor.h"
+#include "ThingspeakMine.h"
+
 void setup() {
   Serial.begin(9600);
 
+ // connectWIFI();
 
+  PinMode();
 
   DigitalWrite();
 
   AnalogWrite();
 
-  PinMode();
 
 
   BLEInit();
 
-  setMotorService();
+  SetMotorService();
   BLEAdvertise();
   Serial.println("BLE Peripheral");
 }

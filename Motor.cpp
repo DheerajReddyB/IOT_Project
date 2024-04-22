@@ -86,7 +86,19 @@ void Right() {
   digitalWrite(IN4, LOW);
 }
 
-void setMotorService() {
+
+void BLEInit() {
+
+
+  // BLE initialization
+  if (!BLE.begin()) {
+    Serial.println("Starting Bluetooth® Low Energy module failed!");
+    while (1) ;
+  }
+}
+
+
+void SetMotorService() {
   // set advertised local name and service UUID:
   BLE.setDeviceName("IOT_Project");
   BLE.setLocalName("IOT_Project");
@@ -100,16 +112,6 @@ void setMotorService() {
 
   // set the initial value for the characeristic:
   switchCharacteristic.writeValue(0);
-}
-
-void BLEInit() {
-
-
-  // BLE initialization
-  if (!BLE.begin()) {
-    Serial.println("Starting Bluetooth® Low Energy module failed!");
-    while (1) ;
-  }
 }
 
 
@@ -148,6 +150,7 @@ void Motor() {
                 Backward();
                 Serial.println("Backward");
                 delay(150);
+
                 break;
               }
             case 51:

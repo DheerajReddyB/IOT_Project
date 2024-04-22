@@ -1,9 +1,6 @@
 
-
-
-
 void Motor();
-void setMotorService();
+void SetMotorService();
 void BLEInit();
 void BLEAdvertise();
 void Backward();
