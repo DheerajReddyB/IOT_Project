@@ -112,8 +112,7 @@ void BLEInit() {
   // BLE initialization
   if (!BLE.begin()) {
     Serial.println("Starting Bluetooth® Low Energy module failed!");
-    while (1)
-      ;
+    while (1) ;
   }
 }
 
