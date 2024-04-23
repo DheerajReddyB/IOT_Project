@@ -14,7 +14,7 @@ void setup() {
 void loop() {
   // wait for a Bluetooth®️ Low Energy central
   // Serial.println("Motor Calling");
-  //Motor();
+  Motor();
 
   if (CheckWIFI()) {
     Serial.println("----------------WIFI CONNECTED , CONNECT TO THINGSPEAK-----------------------------");

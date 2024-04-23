@@ -1,2 +1,0 @@
-boolean CheckWIFI();
-void ConnectToThingSpeak();
