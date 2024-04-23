@@ -1,6 +1,8 @@
 #include <ArduinoBLE.h>
 #include "BLEDevice.h"
 
+#include "Ultrasonic.h"
+
 #define IN1 6
 #define IN2 5
 #define IN3 4
@@ -136,6 +138,8 @@ void Motor() {
         Serial.println(value);
         if (value > 0) {
           Serial.println("========================" );
+
+
           switch (value) {
             case 49:
               {
@@ -149,7 +153,9 @@ void Motor() {
                 Backward();
                 Serial.println("Backward");
                 delay(150);
-
+	// Invoke Ultrasonic
+		Serial.println("Invoke Ultrasonic ");
+		Ultrasonic();
                 break;
               }
             case 51:
@@ -164,12 +170,6 @@ void Motor() {
                 Right();
                 Serial.println("Right");
                 delay(150);
-                break;
-              }
-            case 53:
-              {
-                Stop();
-                Serial.println("Stop");
                 break;
               }
             default:

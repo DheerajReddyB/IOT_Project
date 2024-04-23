@@ -19,7 +19,7 @@ void UltraSPinMode() {
   pinMode(echoPin, INPUT); // Sets the echoPin as an INPUT
   pinMode(LEDPin, OUTPUT); // Sets the LEDPin as an OUTPUT
   Serial.begin(9600); // Starts the serial communication*/
-  Serial.begin(9600);
+ // Serial.begin(9600);
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
 }
