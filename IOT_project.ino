@@ -14,10 +14,12 @@ void setup() {
 void loop() {
   // wait for a Bluetooth®️ Low Energy central
   // Serial.println("Motor Calling");
+  //Motor();
+
   if (CheckWIFI()) {
     Serial.println("----------------WIFI CONNECTED , NOT CONNECT TO THINGSPEAK-----------------------------");
     ConnectToThingSpeak();
+  } else {
+    Serial.println("----------------WIFI CONNECTION FAILED, TELEMETERY DATA NOT SENT TO THINGSPEAK-----------------------------");
   }
-
-  //Motor();
 }
