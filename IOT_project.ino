@@ -1,6 +1,5 @@
 #include "Motor.h"
-#include "ThingspeakMine.h"
-#include "WIFIMine.h"
+
 #include "Ultrasonic.h"
 
 void setup() {
@@ -14,15 +13,16 @@ void setup() {
 }
 
 void loop() {
-  
+
+
+  // Invoke Ultrasonic
+  Serial.println("Invoke Ultrasonic ");
+  Ultrasonic();
+
   // wait for a Bluetooth®️ Low Energy central
-  Serial.println("Motor Calling");
+  Serial.println("Run Car");
   Motor();
 
-  if (CheckWIFI()) { 
-    Serial.println("----------------WIFI ALREADY CONNECTED , CONNECT TO THINGSPEAK-----------------------------");
-    ConnectToThingSpeak();
-  } else {
-    Serial.println("----------------WIFI CONNECTION FAILED, TELEMETERY DATA NOT SENT TO THINGSPEAK-----------------------------");
-  }
+  
+ 
 }

@@ -1,4 +1,3 @@
-#include <WiFi.h>
 #include <WiFiClient.h>
 #include "ThingSpeak.h"
 
@@ -15,10 +14,7 @@ void ConnectToThingSpeak() {
   unsigned long MY_CHANNEL_NUMBER = 1;
   unsigned long MY_FIELD_NUMBER = 1;
 
-  // Timer variables
-  unsigned long lastTime = 0;
-  unsigned long timerDelay = 30000;
-  Serial.println("Connecting to ThingSpeak");
+
 
   ThingSpeak.begin(client);  // Initialize ThingSpeak
   // Variable to hold engine heat readings
@@ -28,7 +24,7 @@ void ConnectToThingSpeak() {
   float speed = random(1000);
 
   // Variable to hold speed readings
-  float tilt =random(10);
+  float tilt = random(10);
 
   // set the fields with the values
   ThingSpeak.setField(1, temperatureC);
@@ -41,12 +37,98 @@ void ConnectToThingSpeak() {
   if (httpstatuscode == 200) {
     Serial.println("Channel update successful." + String(httpstatuscode));
 
-    Serial.println("After update waiting for 15 seconds ");
-    delay(15000);
+    Serial.println("After update waiting for 5 seconds ");
+    delay(5000);
 
 
   } else {
     Serial.println("Problem updating channel. HTTP error code " + String(httpstatuscode));
   }
-  lastTime = millis();
+}
+
+
+void ConnectToThingSpeakForSpeed(long speed) {
+  unsigned long MY_CHANNEL_NUMBER = 1;
+  unsigned long MY_FIELD_NUMBER = 4;
+
+  //Logic to scale add here before senting to ThingSpeak
+
+  // set the fields with the values
+  ThingSpeak.setField(MY_FIELD_NUMBER, speed);
+
+  int httpstatuscode = ThingSpeak.writeFields(MY_CHANNEL_NUMBER, WRITE_API_KEY);
+  if (httpstatuscode == 200) {
+    Serial.println("Channel update successful." + String(httpstatuscode));
+
+    Serial.println("After update waiting for 5 seconds ");
+    delay(5000);
+
+
+  } else {
+    Serial.println("Problem updating channel. HTTP error code " + String(httpstatuscode));
+  }
+}
+void ConnectToThingSpeakForTilt(long tilt) {
+  unsigned long MY_CHANNEL_NUMBER = 1;
+  unsigned long MY_FIELD_NUMBER = 3;
+
+  //Logic to scale add here before senting to ThingSpeak
+
+  // set the fields with the values
+  ThingSpeak.setField(MY_FIELD_NUMBER, tilt);
+
+
+  int httpstatuscode = ThingSpeak.writeFields(MY_CHANNEL_NUMBER, WRITE_API_KEY);
+  if (httpstatuscode == 200) {
+    Serial.println("Channel update successful." + String(httpstatuscode));
+
+    Serial.println("After update waiting for 5 seconds ");
+    delay(5000);
+
+
+  } else {
+    Serial.println("Problem updating channel. HTTP error code " + String(httpstatuscode));
+  }
+}
+void ConnectToThingSpeakForDistance(long distance) {
+  unsigned long MY_CHANNEL_NUMBER = 1;
+  unsigned long MY_FIELD_NUMBER = 1;
+  ThingSpeak.begin(client);  // Initialize ThingSpeak
+
+  //Logic to scale add here before senting to ThingSpeak
+
+  // set the fields with the values
+  ThingSpeak.setField(MY_FIELD_NUMBER, distance);
+
+  int httpstatuscode = ThingSpeak.writeFields(MY_CHANNEL_NUMBER, WRITE_API_KEY);
+  if (httpstatuscode == 200) {
+    Serial.println("Channel update successful." + String(httpstatuscode));
+
+    Serial.println("After update waiting for 5 seconds ");
+    delay(5000);
+
+
+  } else {
+    Serial.println("Problem updating channel. HTTP error code " + String(httpstatuscode));
+  }
+}
+void ConnectToThingSpeakForTemperature(long temperatureC) {
+  unsigned long MY_CHANNEL_NUMBER = 1;
+  unsigned long MY_FIELD_NUMBER = 2;
+
+  //Logic to scale add here before senting to ThingSpeak
+
+  // set the fields with the values
+  ThingSpeak.setField(MY_FIELD_NUMBER, temperatureC);
+
+  int httpstatuscode = ThingSpeak.writeFields(MY_CHANNEL_NUMBER, WRITE_API_KEY);
+  if (httpstatuscode == 200) {
+    Serial.println("Channel update successful." + String(httpstatuscode));
+
+    Serial.println("After update waiting for 5 seconds ");
+    delay(5000);
+
+  } else {
+    Serial.println("Problem updating channel. HTTP error code " + String(httpstatuscode));
+  }
 }

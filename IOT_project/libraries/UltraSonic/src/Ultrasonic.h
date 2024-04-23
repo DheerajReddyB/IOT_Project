@@ -1,2 +1,2 @@
-void PinMode();
-void ultrasonic_faster();
+void UltraSPinMode();
+void Ultrasonic();

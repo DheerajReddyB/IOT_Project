@@ -108,6 +108,9 @@ void SetMotorService() {
 
   // set the initial value for the characeristic:
   switchCharacteristic.writeValue(0);
+
+
+
 }
 
 
