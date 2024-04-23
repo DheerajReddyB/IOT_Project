@@ -14,12 +14,13 @@ void CheckWIFI()
 {
    WiFi.begin(WIFI_SSID, WIFI_PASS);
   Serial.println("Connecting");
+
   while(WiFi.status() != WL_CONNECTED) {
     delay(500);
-    Serial.print("hi.");
+    Serial.println("hi.");
   }
   Serial.println("");
-  Serial.print("Connected to WiFi network with IP Address: ");
+  Serial.println("Connected to WiFi network with IP Address: ");
   Serial.println(WiFi.localIP());
  
   Serial.println("Timer set to 5 seconds (timerDelay variable), it will take 5 seconds before publishing the first reading.");
