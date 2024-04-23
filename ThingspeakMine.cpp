@@ -24,13 +24,13 @@ void ConnectToThingSpeak() {
 
   ThingSpeak.begin(client);  // Initialize ThingSpeak
   // Variable to hold engine heat readings
-  float temperatureC = 10.01;
+  float temperatureC = 0.01;
 
   // Variable to hold speed readings
-  float speed = 100.01;
+  float speed = 10000.01;
 
   // Variable to hold speed readings
-  float tilt = 100.01;
+  float tilt = 600.01;
 
   // set the fields with the values
   ThingSpeak.setField(1, temperatureC);
