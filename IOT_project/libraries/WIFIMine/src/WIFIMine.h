@@ -1,0 +1,2 @@
+boolean CheckWIFI();
+void WIFIInit();

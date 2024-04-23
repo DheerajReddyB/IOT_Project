@@ -7,7 +7,7 @@
 3) Structure the codebase 
 
 	https://github.com/bremme/arduino-project
-
+        https://github.com/asukiaaa/ThingSpeak_asukiaaa/blob/master/src/ThingSpeakWriter_asukiaaa.h
 4) For developing own library  to structure the code create a folder library and under that create seperate 	folders for each of the new libaries 
 	https://forum.arduino.cc/t/ide-cant-find-header-file-that-is-in-library-dir/599811/16
 	
@@ -30,3 +30,5 @@
 	Create a zip file of each of these libraries and load as mentioned in step 1
 	Then include the .h header file in the ino files 
 
+5) Other sensor integration 
+https://randomnerdtutorials.com/esp32-thingspeak-publish-arduino/

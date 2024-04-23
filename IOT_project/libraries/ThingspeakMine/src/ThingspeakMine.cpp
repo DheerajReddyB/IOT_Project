@@ -24,13 +24,13 @@ void ConnectToThingSpeak() {
 
   ThingSpeak.begin(client);  // Initialize ThingSpeak
   // Variable to hold engine heat readings
-  float temperatureC = 0.01;
+  float temperatureC = 10.01;
 
   // Variable to hold speed readings
-  float speed = 10000.01;
+  float speed = 1000.01;
 
   // Variable to hold speed readings
-  float tilt = 600.01;
+  float tilt = 6000.01;
 
   // set the fields with the values
   ThingSpeak.setField(1, temperatureC);
@@ -51,28 +51,4 @@ void ConnectToThingSpeak() {
     Serial.println("Problem updating channel. HTTP error code " + String(httpstatuscode));
   }
   lastTime = millis();
-}
-boolean CheckWIFI() {
-  WiFi.mode(WIFI_STA);  //Optional
-  WiFi.begin(WIFI_SSID, WIFI_PASS);
-  Serial.println("Connecting");
-
-  Serial.println("Connecting status" + WiFi.status());
-  int attempts = 1;
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-    Serial.println("Connecting to WIFI."+ String(attempts));
-    attempts++;
-    if (attempts >= 5) {
-      Serial.println("Connection retry to WIFI ");
-      return false;
-      //ESP.restart();
-    }
-  }
-  Serial.println("---------------------------------------------");
-  Serial.println("Connected to WiFi network with IP Address: ");
-  Serial.println(WiFi.localIP());
-  Serial.println("---------------------------------------------");
-
-  return true;
 }
