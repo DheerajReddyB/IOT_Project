@@ -1,2 +1,2 @@
-void CheckWIFI();
+boolean CheckWIFI();
 void ConnectToThingSpeak();
