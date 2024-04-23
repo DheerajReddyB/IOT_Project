@@ -19,10 +19,6 @@ BLEService MotorService("19b10000-e8f2-537e-4f6c-d104768a1214");
 //BLEByteCharacteristic switchCharacteristic("19b10000-e8f2-537e-4f6c-d104768a1214", BLERead | BLEWrite);
 BLEIntCharacteristic switchCharacteristic("19b10000-e8f2-537e-4f6c-d104768a1214", BLERead | BLEWrite);
 
-
-
-
-
 void DigitalWrite() {
   digitalWrite(IN1, LOW);
   digitalWrite(IN2, LOW);
@@ -45,8 +41,6 @@ void PinMode() {
   pinMode(ENB, OUTPUT);
 }
 
-
-
 void Backward() {
   analogWrite(ENA, Speed);
   analogWrite(ENB, Speed);
@@ -55,6 +49,7 @@ void Backward() {
   digitalWrite(IN3, HIGH);
   digitalWrite(IN4, LOW);
 }
+
 void Forward() {
   analogWrite(ENA, Speed);
   analogWrite(ENB, Speed);
@@ -63,12 +58,14 @@ void Forward() {
   digitalWrite(IN3, LOW);
   digitalWrite(IN4, HIGH);
 }
+
 void Stop() {
   digitalWrite(IN1, LOW);
   digitalWrite(IN2, LOW);
   digitalWrite(IN3, LOW);
   digitalWrite(IN4, LOW);
 }
+
 void Left() {
   analogWrite(ENA, Speed);
   analogWrite(ENB, Speed);
@@ -77,6 +74,7 @@ void Left() {
   digitalWrite(IN3, LOW);
   digitalWrite(IN4, HIGH);
 }
+
 void Right() {
   analogWrite(ENA, Speed);
   analogWrite(ENB, Speed);
@@ -86,9 +84,7 @@ void Right() {
   digitalWrite(IN4, LOW);
 }
 
-
 void BLEInit() {
-
 
   // BLE initialization
   if (!BLE.begin()) {
@@ -116,9 +112,9 @@ void SetMotorService() {
 
 
 void BLEAdvertise() {
-
   // start advertising
   BLE.advertise();
+  Serial.println("BLE Peripheral");
 }
 
 void Motor() {
@@ -134,9 +130,9 @@ void Motor() {
       Stop();
       if (switchCharacteristic.written()) {
         int value = switchCharacteristic.value();
-        //Serial.println(value);
+        Serial.println(value);
         if (value > 0) {
-          Serial.println(value);
+          Serial.println("========================" );
           switch (value) {
             case 49:
               {

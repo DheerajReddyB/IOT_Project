@@ -4,7 +4,7 @@
 void setup() {
   Serial.begin(9600);
 
- // connectWIFI();
+  //CheckWIFI();
 
   PinMode();
 
@@ -18,10 +18,11 @@ void setup() {
 
   SetMotorService();
   BLEAdvertise();
-  Serial.println("BLE Peripheral");
 }
 
 void loop() {
   // wait for a Bluetooth®️ Low Energy central
+  Serial.println("Motor Calling");
+
   Motor();
 }

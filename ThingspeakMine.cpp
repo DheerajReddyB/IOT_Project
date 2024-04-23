@@ -6,17 +6,17 @@
 #define WIFI_SSID "sweethome-JioFiber-24_5G"
 #define WIFI_PASS "2success2"
 
-void ConnectToThingSpeak
+void ConnectToThingSpeak()
 {
 
 }
-void CheckWIFI();
+void CheckWIFI()
 {
    WiFi.begin(WIFI_SSID, WIFI_PASS);
   Serial.println("Connecting");
   while(WiFi.status() != WL_CONNECTED) {
     delay(500);
-    Serial.print(".");
+    Serial.print("hi.");
   }
   Serial.println("");
   Serial.print("Connected to WiFi network with IP Address: ");
