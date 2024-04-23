@@ -1,6 +1,7 @@
 #include "Motor.h"
 #include "ThingspeakMine.h"
 #include "WIFIMine.h"
+#include "Ultrasonic.h"
 
 void setup() {
   Serial.begin(9600);

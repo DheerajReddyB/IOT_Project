@@ -3,8 +3,6 @@
 #include "ThingSpeak.h"
 
 #define USER_API_KEY "BNFKO2CURC1S7EWZ"
-#define WIFI_SSID "sweethome-JioFiber-24_2.4G"
-#define WIFI_PASS "2success2"
 #define ALERT_API_KEY "TAKmmw9DRVrWNKo7YE9"
 
 #define WRITE_API_KEY "BIDKCSP43TP553K4"
@@ -24,13 +22,13 @@ void ConnectToThingSpeak() {
 
   ThingSpeak.begin(client);  // Initialize ThingSpeak
   // Variable to hold engine heat readings
-  float temperatureC = 10.01;
+  float temperatureC = random(500);
 
   // Variable to hold speed readings
-  float speed = 1000.01;
+  float speed = random(1000);
 
   // Variable to hold speed readings
-  float tilt = 6000.01;
+  float tilt =random(10);
 
   // set the fields with the values
   ThingSpeak.setField(1, temperatureC);
