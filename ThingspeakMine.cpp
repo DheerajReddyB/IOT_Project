@@ -58,12 +58,12 @@ boolean CheckWIFI() {
   Serial.println("Connecting");
 
   Serial.println("Connecting status" + WiFi.status());
-  int attempts = 0;
+  int attempts = 1;
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
-    Serial.println("Connecting to WIFI.");
+    Serial.println("Connecting to WIFI."+ String(attempts));
     attempts++;
-    if (attempts >= 20) {
+    if (attempts >= 5) {
       Serial.println("Connection retry to WIFI ");
       return false;
       //ESP.restart();
@@ -72,7 +72,6 @@ boolean CheckWIFI() {
   Serial.println("---------------------------------------------");
   Serial.println("Connected to WiFi network with IP Address: ");
   Serial.println(WiFi.localIP());
-
   Serial.println("---------------------------------------------");
 
   return true;

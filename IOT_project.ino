@@ -17,7 +17,7 @@ void loop() {
   //Motor();
 
   if (CheckWIFI()) {
-    Serial.println("----------------WIFI CONNECTED , NOT CONNECT TO THINGSPEAK-----------------------------");
+    Serial.println("----------------WIFI CONNECTED , CONNECT TO THINGSPEAK-----------------------------");
     ConnectToThingSpeak();
   } else {
     Serial.println("----------------WIFI CONNECTION FAILED, TELEMETERY DATA NOT SENT TO THINGSPEAK-----------------------------");
