@@ -14,7 +14,8 @@ const long interval = 100; // Interval at which to trigger the ultrasonic sensor
 long duration, distance;  // Duration used to calculate distance
 //bool trigState = false; // Trigger state
 
-void UltraSPinMode() {
+
+void UltraSInit() {
   /*pinMode(trigPin, OUTPUT); // Sets the trigPin as an OUTPUT
   pinMode(echoPin, INPUT); // Sets the echoPin as an INPUT
   pinMode(LEDPin, OUTPUT); // Sets the LEDPin as an OUTPUT
@@ -26,7 +27,6 @@ void UltraSPinMode() {
 
 void Ultrasonic() {
   Serial.println("Ultrasonic ");
-  UltraSPinMode();
   /* unsigned long currentMillis = millis();
 
   if (currentMillis - previousMillis >= interval) {

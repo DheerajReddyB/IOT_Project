@@ -1,2 +1,2 @@
-void UltraSPinMode();
 void Ultrasonic();
+void UltraSInit();

@@ -1,23 +1,24 @@
 #include "Motor.h"
 
 void setup() {
+
+  // Initalisation data transfer rate in baud
+  //The Baud rate refers to the total number of signal units transmitted in one second. The Bit rate refers to the total Bits transmitted in one unit time. Baud rate indicates the total number of times the overall state of a given signal changes/ alters. Bit rate indicates the total bits that travel per second.
+ 
   Serial.begin(9600);
-  PinMode();
-  DigitalWrite();
-  AnalogWrite();
+  
+  // Initalisation for a Bluetooth®️ Low Energy central
+  
   BLEInit();
-  SetMotorService();
-  BLEAdvertise();
+  
+  // Initalisation for a Ultrasonic Low Energy central
+  
+  UltraSInit();
+
 }
 
-void loop() {
-
-
-
+void loop() { 
   // wait for a Bluetooth®️ Low Energy central
   Serial.println("Run Car");
   Motor();
-
-
- 
 }

@@ -88,11 +88,16 @@ void Right() {
 
 void BLEInit() {
 
+  PinMode();
+  DigitalWrite();
+  AnalogWrite();
   // BLE initialization
   if (!BLE.begin()) {
     Serial.println("Starting Bluetooth® Low Energy module failed!");
     while (1) ;
   }
+  SetMotorService();
+  BLEAdvertise() ;
 }
 
 
