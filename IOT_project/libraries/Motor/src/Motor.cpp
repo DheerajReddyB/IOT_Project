@@ -1,6 +1,5 @@
 #include <ArduinoBLE.h>
 #include "BLEDevice.h"
-
 #include "Ultrasonic.h"
 
 #define IN1 6
@@ -86,20 +85,11 @@ void Right() {
   digitalWrite(IN4, LOW);
 }
 
-void BLEInit() {
-
-  PinMode();
-  DigitalWrite();
-  AnalogWrite();
-  // BLE initialization
-  if (!BLE.begin()) {
-    Serial.println("Starting Bluetooth® Low Energy module failed!");
-    while (1) ;
-  }
-  SetMotorService();
-  BLEAdvertise() ;
+void BLEAdvertise() {
+  // start advertising
+  BLE.advertise();
+  Serial.println("BLE Peripheral");
 }
-
 
 void SetMotorService() {
   // set advertised local name and service UUID:
@@ -116,16 +106,28 @@ void SetMotorService() {
   // set the initial value for the characeristic:
   switchCharacteristic.writeValue(0);
 
-
+ BLEAdvertise();
 
 }
 
 
-void BLEAdvertise() {
-  // start advertising
-  BLE.advertise();
-  Serial.println("BLE Peripheral");
+void BLEInit() {
+
+  PinMode();
+  DigitalWrite();
+  AnalogWrite();
+  // BLE initialization
+  if (!BLE.begin()) {
+    Serial.println("Starting Bluetooth® Low Energy module failed!");
+    while (1) ;
+  }
+  SetMotorService();
+
 }
+
+
+
+
 
 void Motor() {
   // wait for a Bluetooth®️ Low Energy central
@@ -155,21 +157,21 @@ void Motor() {
               }
             case 50:
               {
-				 /* if(Ultrasonic()<20)
-				  {
-					   Stop();
-				  }else
-				  {
-					  */
-						Backward();
-						Serial.println("Backward");
-						delay(150);
-						// Invoke Ultrasonic
-						Serial.println("Invoke Ultrasonic ");
-						//long distance = Ultrasonic();
-						 Ultrasonic();
-				//  }
+				 Serial.println("Invoke Ultrasonic ");
 
+				  if(Ultrasonic()<20)
+
+				  {
+					  Stop();
+
+	}else
+	{
+		Backward();
+		                Serial.println("Backward");
+		                delay(150);
+			// Invoke Ultrasonic
+
+	}
                 break;
               }
             case 51:

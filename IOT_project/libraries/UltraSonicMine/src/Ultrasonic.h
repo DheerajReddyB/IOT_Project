@@ -1,2 +1,2 @@
-void Ultrasonic();
+long Ultrasonic();
 void UltraSInit();

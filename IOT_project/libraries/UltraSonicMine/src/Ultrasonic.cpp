@@ -25,7 +25,7 @@ void UltraSInit() {
   pinMode(echoPin, INPUT);
 }
 
-void Ultrasonic() {
+long Ultrasonic() {
   Serial.println("Ultrasonic ");
   /* unsigned long currentMillis = millis();
 
@@ -94,5 +94,5 @@ void Ultrasonic() {
 
 
   delay(100);
- // return distance;
+  return distance;
 }
