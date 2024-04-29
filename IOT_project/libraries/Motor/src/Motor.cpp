@@ -155,12 +155,21 @@ void Motor() {
               }
             case 50:
               {
-                Backward();
-                Serial.println("Backward");
-                delay(150);
-	// Invoke Ultrasonic
-		Serial.println("Invoke Ultrasonic ");
-		Ultrasonic();
+				 /* if(Ultrasonic()<20)
+				  {
+					   Stop();
+				  }else
+				  {
+					  */
+						Backward();
+						Serial.println("Backward");
+						delay(150);
+						// Invoke Ultrasonic
+						Serial.println("Invoke Ultrasonic ");
+						//long distance = Ultrasonic();
+						 Ultrasonic();
+				//  }
+
                 break;
               }
             case 51:
