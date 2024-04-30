@@ -2,13 +2,13 @@
 #include "BLEDevice.h"
 #include "Ultrasonic.h"
 
-#define IN1 6
-#define IN2 5
-#define IN3 4
-#define IN4 3
+#define IN1 7
+#define IN2 6
+#define IN3 5
+#define IN4 4
 
-#define ENA 7
-#define ENB 2
+#define ENA 8
+#define ENB 3
 
 
 #define Speed 200
@@ -126,9 +126,6 @@ void BLEInit() {
 }
 
 
-
-
-
 void Motor() {
   // wait for a Bluetooth®️ Low Energy central
   BLEDevice central = BLE.central();
@@ -157,21 +154,18 @@ void Motor() {
               }
             case 50:
               {
-				 Serial.println("Invoke Ultrasonic ");
-
-				  if(Ultrasonic()<20)
-
-				  {
-					  Stop();
-
-	}else
-	{
-		Backward();
-		                Serial.println("Backward");
-		                delay(150);
-			// Invoke Ultrasonic
-
-	}
+				       Serial.println("Invoke Ultrasonic ");
+				        if(Ultrasonic()<20)
+                {
+                  Stop();
+                }
+                else
+	              {
+		              Backward();
+		              Serial.println("Backward");
+		              delay(150);
+			            // Invoke Ultrasonic
+	              }
                 break;
               }
             case 51:
