@@ -1,6 +1,7 @@
 #include <ArduinoBLE.h>
 #include "BLEDevice.h"
 #include "Ultrasonic.h"
+#include "IrSensor.h"
 
 #define IN1 7
 #define IN2 6
@@ -147,9 +148,16 @@ void Motor() {
           switch (value) {
             case 49:
               {
-                Forward();
-                Serial.println("Forward");
-                delay(150);
+                if (IR_sensor()){
+                  Forward();
+                  Serial.println("Forward");
+                  delay(150);
+                }
+                else
+                {
+                  Stop();
+                  Serial.println("Ledge detected");
+                }
                 break;
               }
             case 50:
