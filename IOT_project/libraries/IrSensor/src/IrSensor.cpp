@@ -14,12 +14,12 @@ int IR_sensor()
 {
   if (digitalRead(IrPin)== LOW)
   {
-    return 0;
-    //IR does not detect floor
+    return 1;
+    //IR detect floor
   }
 
-  return 1;
-  //IR detects floor
+  return 0;
+  //IR does not detects floor
   
   /*
   if (CheckWIFI()) {
