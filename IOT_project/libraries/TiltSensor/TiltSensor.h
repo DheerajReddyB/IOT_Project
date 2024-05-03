@@ -1,0 +1,2 @@
+void TiltInit();
+long Tilt();

@@ -22,7 +22,7 @@ boolean CheckWIFI() {
 
     int attempts = 1;
     while (WiFi.status() != WL_CONNECTED) {
-      delay(500);
+//      delay(500);
       Serial.println("Connecting to WIFI." + String(attempts));
       attempts++;
       if (attempts >= 3) {

@@ -37,8 +37,8 @@ void ConnectToThingSpeak() {
   if (httpstatuscode == 200) {
     Serial.println("Channel update successful." + String(httpstatuscode));
 
-    Serial.println("After update waiting for 5 seconds ");
-    delay(5000);
+ //   Serial.println("After update waiting for 5 seconds ");
+//    delay(5000);
 
 
   } else {
@@ -60,8 +60,8 @@ void ConnectToThingSpeakForSpeed(long speed) {
   if (httpstatuscode == 200) {
     Serial.println("Channel update successful." + String(httpstatuscode));
 
-    Serial.println("After update waiting for 5 seconds ");
-    delay(5000);
+ //   Serial.println("After update waiting for 5 seconds ");
+//    delay(5000);
 
 
   } else {
@@ -82,8 +82,8 @@ void ConnectToThingSpeakForTilt(long tilt) {
   if (httpstatuscode == 200) {
     Serial.println("Channel update successful." + String(httpstatuscode));
 
-    Serial.println("After update waiting for 5 seconds ");
-    delay(5000);
+   // Serial.println("After update waiting for 5 seconds ");
+  //  delay(5000);
 
 
   } else {
@@ -104,8 +104,33 @@ void ConnectToThingSpeakForDistance(long distance) {
   if (httpstatuscode == 200) {
     Serial.println("Channel update successful." + String(httpstatuscode));
 
-    Serial.println("After update waiting for 5 seconds ");
-    delay(5000);
+   // Serial.println("After update waiting for 5 seconds ");
+  //  delay(5000);
+
+
+  } else {
+    Serial.println("Problem updating channel. HTTP error code " + String(httpstatuscode));
+  }
+}
+
+void ConnectToThingSpeakForTilt(long tilt) {
+  unsigned long MY_CHANNEL_NUMBER = 1;
+  unsigned long MY_FIELD_NUMBER = 2;
+  ThingSpeak.begin(client);  // Initialize ThingSpeak
+
+  //Logic to scale add here before senting to ThingSpeak
+
+  // set the fields with the values
+  ThingSpeak.setField(MY_FIELD_NUMBER, tilt);
+  //when normal : tilt = 1 (one light light up)
+  //when robot flips : tilt = 0 (both lights light up)
+
+  int httpstatuscode = ThingSpeak.writeFields(MY_CHANNEL_NUMBER, WRITE_API_KEY);
+  if (httpstatuscode == 200) {
+    Serial.println("Channel update successful." + String(httpstatuscode));
+
+   // Serial.println("After update waiting for 5 seconds ");
+  //  delay(5000);
 
 
   } else {
@@ -125,8 +150,8 @@ void ConnectToThingSpeakForTemperature(long temperatureC) {
   if (httpstatuscode == 200) {
     Serial.println("Channel update successful." + String(httpstatuscode));
 
-    Serial.println("After update waiting for 5 seconds ");
-    delay(5000);
+   // Serial.println("After update waiting for 5 seconds ");
+  //  delay(5000);
 
   } else {
     Serial.println("Problem updating channel. HTTP error code " + String(httpstatuscode));

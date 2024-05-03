@@ -1,5 +1,4 @@
-#include <ArduinoBLE.h>
-#include "BLEDevice.h"
+M#include "BLEDevice.h"
 #include "Ultrasonic.h"
 #include "IrSensor.h"
 
@@ -162,9 +161,13 @@ void Motor() {
               }
             case 50:
               {
-				       Serial.println("Invoke Ultrasonic ");
+                /*Backward();
+                delay(150);*/
+				        Serial.println("Invoke Ultrasonic ");
+
 				        if(Ultrasonic()<20)
                 {
+                  Serial.println("TOOOOO CLOSE!!!!!!");
                   Stop();
                 }
                 else

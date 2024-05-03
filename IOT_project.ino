@@ -1,6 +1,7 @@
 #include "Motor.h"
 #include "Ultrasonic.h"
 #include "IrSensor.h"
+#include "TiltSensor.h"
 
 void setup() {
 
@@ -24,10 +25,12 @@ void setup() {
 
   IrInit();
 
+  // Initalisation for a Tilt sensor
+
+  TiltInit();
 }
 
 void loop() { 
   // wait for a Bluetooth®️ Low Energy central
-  Serial.println("Run Car");
   Motor();
 }
