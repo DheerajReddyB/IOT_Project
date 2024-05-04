@@ -1,4 +1,4 @@
-M#include "BLEDevice.h"
+#include "BLEDevice.h"
 #include "Ultrasonic.h"
 #include "IrSensor.h"
 
@@ -161,9 +161,9 @@ void Motor() {
               }
             case 50:
               {
-                /*Backward();
-                delay(150);*/
-				        Serial.println("Invoke Ultrasonic ");
+                Backward();
+                delay(150);
+				        /*Serial.println("Invoke Ultrasonic ");
 
 				        if(Ultrasonic()<20)
                 {
@@ -176,7 +176,7 @@ void Motor() {
 		              Serial.println("Backward");
 		              delay(150);
 			            // Invoke Ultrasonic
-	              }
+	              }*/
                 break;
               }
             case 51:
