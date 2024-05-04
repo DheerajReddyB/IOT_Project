@@ -44,7 +44,7 @@ long Ultrasonic() {
 
   Serial.print("Ultrasonic distance: ");
   Serial.println(distance);
-    }
+    
 
   if (CheckWIFI()) {
     Serial.println("----------------WIFI ALREADY CONNECTED TO ULTRASONIC MODULE, CONNECT TO THINGSPEAK-----------------------------");

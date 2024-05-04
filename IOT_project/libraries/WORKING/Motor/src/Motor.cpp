@@ -162,12 +162,17 @@ void Motor() {
               }
             case 50:
               {
-                Backward();
-                delay(150);
-				        /*Serial.println("Invoke Ultrasonic ");
+                /*Backward();
+                delay(150);*/
+				        Serial.println("Invoke Ultrasonic ");
+                int k=Ultrasonic();
 
 				        if(Ultrasonic()<20)
                 {
+                  Serial.println("======================");
+                  Serial.print("k = ");
+                  Serial.println(k);
+                  Serial.println("======================"); 
                   Serial.println("TOOOOO CLOSE!!!!!!");
                   Stop();
                 }
@@ -177,7 +182,7 @@ void Motor() {
 		              Serial.println("Backward");
 		              delay(150);
 			            // Invoke Ultrasonic
-	              }*/
+	              }
                 break;
               }
             case 51:
