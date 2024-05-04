@@ -113,7 +113,7 @@ void ConnectToThingSpeakForDistance(long distance) {
   }
 }
 
-void ConnectToThingSpeakForTilt(long tilt) {
+void ConnectToThingSpeakForTilt1(long tilt) {
   unsigned long MY_CHANNEL_NUMBER = 1;
   unsigned long MY_FIELD_NUMBER = 2;
   ThingSpeak.begin(client);  // Initialize ThingSpeak
