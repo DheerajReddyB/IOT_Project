@@ -2,6 +2,7 @@
 #include "BLEDevice.h"
 #include "Ultrasonic.h"
 #include "IrSensor.h"
+#include "TiltSensor.h"
 
 #define IN1 7
 #define IN2 6
@@ -17,9 +18,13 @@
 
 //custom 128-bit UUID, read and writable by central
 BLEService MotorService("19b10000-e8f2-537e-4f6c-d104768a1214");
+BLEService TiltService("19b10000-e8f2-537e-4f6c-d104768a1215");
+BLEService IrSensorService("19b10000-e8f2-537e-4f6c-d104768a1216");
 //setting read and write characteristics
 //BLEByteCharacteristic switchCharacteristic("19b10000-e8f2-537e-4f6c-d104768a1214", BLERead | BLEWrite);
 BLEIntCharacteristic switchCharacteristic("19b10000-e8f2-537e-4f6c-d104768a1214", BLERead | BLEWrite);
+BLEIntCharacteristic switchCharacteristicTilt("19b10000-e8f2-537e-4f6c-d104768a1215", BLERead | BLENotify);
+BLEIntCharacteristic switchCharacteristicIrSensor("19b10000-e8f2-537e-4f6c-d104768a1216", BLERead | BLENotify);
 
 void DigitalWrite() {
   digitalWrite(IN1, LOW);
@@ -92,7 +97,7 @@ void BLEAdvertise() {
   Serial.println("BLE Peripheral");
 }
 
-void SetMotorService() {
+void BluetoothServices() {
   // set advertised local name and service UUID:
   BLE.setDeviceName("IOT_Project");
   BLE.setLocalName("IOT_Project");
@@ -100,9 +105,13 @@ void SetMotorService() {
 
   // add the characteristic to the service
   MotorService.addCharacteristic(switchCharacteristic);
+  TiltService.addCharacteristic(switchCharacteristicTilt);
+  IrSensorService.addCharacteristic(switchCharacteristicIrSensor);
 
   // add service
   BLE.addService(MotorService);
+  BLE.addService(TiltService);
+  BLE.addService(IrSensorService);
 
   // set the initial value for the characeristic:
   switchCharacteristic.writeValue(0);
@@ -122,7 +131,7 @@ void BLEInit() {
     Serial.println("Starting Bluetooth® Low Energy module failed!");
     while (1) ;
   }
-  SetMotorService();
+  BluetoothServices();
 
 }
 
@@ -136,6 +145,8 @@ void Motor() {
 
     // while the central is still connected to peripheral:
     while (central.connected()) {
+      
+      switchCharacteristicTilt.writeValue(Tilt());
 
       Stop();
       if (switchCharacteristic.written()) {
@@ -149,12 +160,14 @@ void Motor() {
             case 49:
               {
                 if (IR_sensor()){
+                  switchCharacteristicTilt.writeValue(IR_sensor());
                   Forward();
                   Serial.println("Forward");
                   delay(150);
                 }
                 else
                 {
+                  switchCharacteristicTilt.writeValue(IR_sensor());
                   Stop();
                   Serial.println("Ledge detected");
                 }

@@ -17,7 +17,7 @@ long Tilt()
   }// else {
     //Serial.println("----------------WIFI CONNECTION FAILED TO TILT SENSOR , TELEMETERY DATA NOT SENT TO THINGSPEAK-----------------------------");
   //}
-
+  Serial.println(digitalRead(SENSOR_PIN));
   return digitalRead(SENSOR_PIN); 
   /*if (digitalRead(SENSOR_PIN) == LOW)
   {
