@@ -10,7 +10,6 @@ void TiltInit()
 
 long Tilt()
 {
-
   if (CheckWIFI()) {
     //Serial.println("----------------WIFI ALREADY CONNECTED TO TILT SENSOR MODULE, CONNECT TO THINGSPEAK-----------------------------");
     ConnectToThingSpeakForTilt(digitalRead(SENSOR_PIN));

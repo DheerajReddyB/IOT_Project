@@ -145,8 +145,6 @@ void Motor() {
 
     // while the central is still connected to peripheral:
     while (central.connected()) {
-      
-      switchCharacteristicTilt.writeValue(Tilt());
 
       Stop();
       if (switchCharacteristic.written()) {
@@ -154,20 +152,21 @@ void Motor() {
         Serial.println(value);
         if (value > 0) {
           Serial.println("========================" );
+          switchCharacteristicTilt.writeValue(Tilt());
 
 
           switch (value) {
             case 49:
               {
+                switchCharacteristicTilt.writeValue(IR_sensor());
                 if (IR_sensor()){
-                  switchCharacteristicTilt.writeValue(IR_sensor());
+                  
                   Forward();
                   Serial.println("Forward");
                   delay(150);
                 }
                 else
                 {
-                  switchCharacteristicTilt.writeValue(IR_sensor());
                   Stop();
                   Serial.println("Ledge detected");
                 }
