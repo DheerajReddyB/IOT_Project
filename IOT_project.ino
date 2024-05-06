@@ -7,7 +7,7 @@ void setup() {
 
   // Initalisation data transfer rate in baud
   // The Baud rate refers to the total number of signal units transmitted in one second. 
-  // The Bit rate refers to the total Bits transmitted in one unit time. 
+  // The Bit rate refers to the total Bits transd:\SEM-2\IOT\IOT_project\IOT_project\libraries\UltraSonicMine\src\Ultrasonic.cppmitted in one unit time. 
   // Baud rate indicates the total number of times the overall state of a given signal changes/ alters. 
   // Bit rate indicates the total bits that travel per second.
  
