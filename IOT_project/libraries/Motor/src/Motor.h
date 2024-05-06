@@ -1,7 +1,7 @@
 
 
 void BLEInit();
-void SetMotorService();
+void BluetoothServices();
 void BLEAdvertise();
 void Motor();
 void Backward();
